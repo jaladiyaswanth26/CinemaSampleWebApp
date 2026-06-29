@@ -1,0 +1,33 @@
+@model List<Movie>
+@{
+    ViewData["Title"] = "Now Showing";
+}
+
+<h2>Now Showing</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var movie in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Title" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@movie.Title</h5>
+                    <p class="card-text">
+                        <span class="badge bg-secondary">@movie.Genre</span>
+                        <span class="badge bg-warning text-dark">⭐ @movie.Rating</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>Showtimes:</strong>
+                        @foreach (var time in movie.Showtimes)
+                        {
+                            <span class="badge bg-info me-1">@time</span>
+                        }
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="Details" asp-route-id="@movie.Id" class="btn btn-outline-primary w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

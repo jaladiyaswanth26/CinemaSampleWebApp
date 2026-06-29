@@ -1,0 +1,1 @@
+console.log("Yash Cinema – ready for action!");

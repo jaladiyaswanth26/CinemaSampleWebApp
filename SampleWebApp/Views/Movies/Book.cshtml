@@ -1,0 +1,42 @@
+@model BookingViewModel
+@{
+    ViewData["Title"] = "Book Tickets";
+}
+
+<h2>Book Tickets for <strong>@Model.MovieTitle</strong></h2>
+
+<form asp-action="Book" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="MovieId" />
+    <input type="hidden" asp-for="MovieTitle" />
+
+    <div class="mb-3">
+        <label asp-for="NumberOfTickets" class="form-label">Number of Tickets (1–10)</label>
+        <input asp-for="NumberOfTickets" class="form-control" type="number" min="1" max="10" />
+        <span asp-validation-for="NumberOfTickets" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CustomerName" class="form-label">Your Name</label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CustomerEmail" class="form-label">Email Address</label>
+        <input asp-for="CustomerEmail" class="form-control" type="email" />
+        <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SeatPreference" class="form-label">Seat Preference (Optional)</label>
+        <input asp-for="SeatPreference" class="form-control" placeholder="e.g., Aisle, Window, Row 5" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+    <a asp-action="Details" asp-route-id="@Model.MovieId" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

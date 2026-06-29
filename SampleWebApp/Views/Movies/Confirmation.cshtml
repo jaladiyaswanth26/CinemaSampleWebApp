@@ -1,0 +1,24 @@
+@model Booking
+@{
+    ViewData["Title"] = "Booking Confirmed";
+}
+
+<div class="alert alert-success text-center" role="alert">
+    <h2>✅ Booking Successful!</h2>
+    <p>Thank you, <strong>@Model.CustomerName</strong>.</p>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Booking Details</h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Movie:</strong> @Model.Movie.Title</li>
+            <li class="list-group-item"><strong>Tickets:</strong> @Model.NumberOfTickets</li>
+            <li class="list-group-item"><strong>Seat Preference:</strong> @(string.IsNullOrEmpty(Model.SeatPreference) ? "None" : Model.SeatPreference)</li>
+            <li class="list-group-item"><strong>Email:</strong> @Model.CustomerEmail</li>
+            <li class="list-group-item"><strong>Booking Date:</strong> @Model.BookingDate.ToString("f")</li>
+        </ul>
+    </div>
+</div>
+
+<a asp-action="Index" asp-controller="Movies" class="btn btn-primary mt-3">Back to Movies</a>
