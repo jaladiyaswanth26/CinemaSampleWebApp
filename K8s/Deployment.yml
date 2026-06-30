@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cinema-app
+
+spec:
+  replicas: 4
+
+  selector:
+    matchLabels:
+      app: cinema-app
+
+  template:
+
+    metadata:
+      labels:
+        app: cinema-app
+
+    spec:
+      containers:
+
+      - name: cinema-app
+
+        image: cinema-app:IMAGE_TAG
+
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 8080
