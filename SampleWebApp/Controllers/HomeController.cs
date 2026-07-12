@@ -22,9 +22,4 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public IActionResult Test()
-{
-    string? name = null;
-    return Content(name.Length.ToString());
-}
 }
